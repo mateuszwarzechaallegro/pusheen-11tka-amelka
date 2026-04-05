@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐱 Pusheen Adventure - Urodzinowa Przygoda!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <div id="particles"></div>
+
+    <!-- ====== STRONA 0: POWITANIE ====== -->
+    <section class="page active" data-page="0">
+      <div class="page-content welcome-page">
+        <div class="pusheen-hero">
+          <div class="pusheen-cat">
+            <svg viewBox="0 0 200 180" class="pusheen-svg">
+              <!-- Ogon -->
+              <path d="M30 120 Q10 100 20 80 Q30 65 40 75" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <!-- Ciało -->
+              <ellipse cx="110" cy="115" rx="70" ry="50" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <!-- Paski -->
+              <path d="M80 90 Q110 85 140 90" stroke="#757575" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M75 105 Q110 100 145 105" stroke="#757575" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M80 120 Q110 115 140 120" stroke="#757575" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Głowa -->
+              <ellipse cx="145" cy="75" rx="42" ry="38" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <!-- Uszy -->
+              <path d="M118 48 L125 28 L138 45" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <path d="M155 45 L168 25 L175 48" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <path d="M122 47 L127 33 L136 46" fill="#F8BBD0" stroke="none"/>
+              <path d="M158 46 L166 30 L172 47" fill="#F8BBD0" stroke="none"/>
+              <!-- Oczy -->
+              <circle cx="135" cy="72" r="4" fill="#424242"/>
+              <circle cx="160" cy="72" r="4" fill="#424242"/>
+              <circle cx="136" cy="71" r="1.5" fill="white"/>
+              <circle cx="161" cy="71" r="1.5" fill="white"/>
+              <!-- Policzki -->
+              <ellipse cx="125" cy="82" rx="6" ry="4" fill="#F8BBD0" opacity="0.6"/>
+              <ellipse cx="170" cy="82" rx="6" ry="4" fill="#F8BBD0" opacity="0.6"/>
+              <!-- Usta -->
+              <path d="M144 82 Q148 88 152 82" stroke="#757575" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <path d="M148 82 Q144 88 140 82" stroke="#757575" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <!-- Łapki -->
+              <ellipse cx="75" cy="155" rx="12" ry="8" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <ellipse cx="105" cy="158" rx="12" ry="8" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <ellipse cx="135" cy="158" rx="12" ry="8" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <ellipse cx="155" cy="155" rx="12" ry="8" fill="#9E9E9E" stroke="#757575" stroke-width="2"/>
+              <!-- Czapeczka urodzinowa -->
+              <polygon points="165,42 175,5 185,42" fill="#E91E63" stroke="#C2185B" stroke-width="1.5"/>
+              <circle cx="175" cy="5" r="4" fill="#FDD835"/>
+              <path d="M163 42 Q175 48 187 42" fill="#7B1FA2" stroke="none"/>
+            </svg>
+          </div>
+          <h1 class="title-glow">Urodzinowa Przygoda!</h1>
+          <div class="birthday-badge">🎂 11 lat! 🎂</div>
+          <p class="welcome-text">
+            Witaj, mała odkrywczyni! Czeka na Ciebie niezwykła przygoda
+            pełna zagadek i tajemnic. Pusheen przygotował dla Ciebie
+            specjalną misję urodzinową!
+          </p>
+          <button class="btn btn-primary btn-bounce" onclick="App.goToPage(1)">
+            Rozpocznij przygodę! 🐾
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STRONA 1: OPIS PRZYGODY ====== -->
+    <section class="page" data-page="1">
+      <div class="page-content story-page">
+        <div class="story-header">
+          <div class="pusheen-mini">🐱</div>
+          <h2>Rozdział 1: Tajemnicze pudełko</h2>
+        </div>
+        <div class="story-card">
+          <div class="story-text">
+            <p>
+              Pewnego słonecznego poranka, w dniu Twoich <strong>11. urodzin</strong>,
+              na Twoim biurku pojawił się tajemniczy pakunek. Nikt nie wiedział,
+              skąd się wziął — ale na opakowaniu widniała mała, szara łapka... 🐾
+            </p>
+            <p>
+              To <strong>Pusheen</strong> zostawił Ci wiadomość! Wewnątrz pudełka
+              kryje się coś wyjątkowego, ale żeby je otworzyć, musisz rozwiązać
+              serię zagadek. Każda poprawna odpowiedź przybliży Cię do odkrycia,
+              co kryje się w środku!
+            </p>
+            <p>
+              Czy jesteś gotowa? Pusheen wierzy w Ciebie! Zbierz całą swoją
+              odwagę, pomysłowość i ruszaj w drogę! 💪
+            </p>
+          </div>
+          <div class="story-decoration">
+            <div class="puzzle-box-icon">
+              <span class="box-emoji">🎁</span>
+              <span class="lock-emoji">🔒</span>
+            </div>
+            <p class="hint-text">Pudełko czeka na otwarcie...</p>
+          </div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-secondary" onclick="App.goToPage(0)">
+            ← Wróć
+          </button>
+          <button class="btn btn-primary" onclick="App.goToPage(2)">
+            Pierwsza zagadka! →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STRONA 2: SZABLON ZAGADKI (placeholder) ====== -->
+    <section class="page" data-page="2">
+      <div class="page-content puzzle-page">
+        <div class="puzzle-header">
+          <span class="puzzle-number">Zagadka 1</span>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="puzzle-card">
+          <div class="pusheen-thinking">
+            <span>🐱💭</span>
+          </div>
+          <h3>Tu pojawi się pierwsza zagadka...</h3>
+          <p class="puzzle-description">
+            Wkrótce Pusheen przygotuje dla Ciebie wyzwanie!
+          </p>
+          <div class="puzzle-input-area">
+            <!-- Tu będzie formularz zagadki -->
+          </div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-secondary" onclick="App.goToPage(1)">
+            ← Wróć
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
