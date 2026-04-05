@@ -114,25 +114,41 @@
       </div>
     </section>
 
-    <!-- ====== STRONA 2: SZABLON ZAGADKI (placeholder) ====== -->
+    <!-- ====== STRONA 2: KRZYŻÓWKA ====== -->
     <section class="page" data-page="2">
-      <div class="page-content puzzle-page">
+      <div class="page-content puzzle-page crossword-page">
         <div class="puzzle-header">
-          <span class="puzzle-number">Zagadka 1</span>
+          <span class="puzzle-number">Zagadka 1 — Krzyżówka 🐱</span>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%"></div>
+            <div class="progress-fill" id="crossword-progress" style="width: 0%"></div>
           </div>
         </div>
         <div class="puzzle-card">
           <div class="pusheen-thinking">
-            <span>🐱💭</span>
+            <span>🐱✏️</span>
           </div>
-          <h3>Tu pojawi się pierwsza zagadka...</h3>
+          <h3>Krzyżówka Pusheena</h3>
           <p class="puzzle-description">
-            Wkrótce Pusheen przygotuje dla Ciebie wyzwanie!
+            Rozwiąż wszystkie hasła, a odkryjesz ukryty symbol!
+            Kliknij na numer pytania, żeby podświetlić hasło.
           </p>
-          <div class="puzzle-input-area">
-            <!-- Tu będzie formularz zagadki -->
+          <div class="crossword-container">
+            <div id="crossword-grid" class="crossword-grid"></div>
+          </div>
+          <div class="crossword-clues">
+            <div class="clues-section">
+              <h4>📝 Pytania:</h4>
+              <ol id="crossword-clue-list" class="clue-list"></ol>
+            </div>
+          </div>
+          <div id="crossword-secret" class="crossword-secret hidden">
+            <div class="secret-reveal">
+              <span class="secret-emoji">🦉✨</span>
+              <h3>Pierwszy symbol odkryty!</h3>
+              <div class="secret-word" id="secret-word-display"></div>
+              <p class="secret-hint">Pilnuje zachodniej bramy</p>
+              <button class="btn btn-primary" onclick="App.goToPage(3)">Dalej →</button>
+            </div>
           </div>
         </div>
         <div class="page-nav">
