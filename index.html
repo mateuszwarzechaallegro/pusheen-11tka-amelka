@@ -245,11 +245,63 @@
                 <p>Znajdź ściankę Wschodnią i ustaw śpiącą literką <strong>"Z"</strong>.</p>
                 <p><span class="highlight-pink">To Twój Wschód!</span></p>
               </div>
+              <button class="btn btn-primary" onclick="App.goToPage(5)">Ostatnia zagadka! →</button>
             </div>
           </div>
         </div>
         <div class="page-nav">
           <button class="btn btn-secondary" onclick="App.goToPage(3)">
+            ← Wróć
+          </button>
+          <button class="btn btn-primary" onclick="App.goToPage(5)">
+            Ostatnia zagadka! →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STRONA 5: POLOWANIE NA OKRUSZKI (ZAGADKA 4) ====== -->
+    <section class="page" data-page="5">
+      <div class="page-content puzzle-page crumb-page">
+        <div class="puzzle-header">
+          <span class="puzzle-number">Zagadka 4 — Polowanie na okruszki! 🍩</span>
+        </div>
+        <div class="puzzle-card crumb-card">
+          <div class="pusheen-thinking">
+            <span>🐱🔍</span>
+          </div>
+          <h3>Polowanie na okruszki!</h3>
+          <div class="pusheen-speech">
+            <p>
+              „Mmm... ile tu okruszków! Moja mama zawsze powtarzała:
+              <em>Pusheen, patrz uważnie pod łapki, bo największe skarby
+              chowają się tam, gdzie nikt inny nie zagląda!</em>"
+            </p>
+            <p>
+              Wśród tego słodkiego chaosu ukryło się rozwiązanie zagadki.
+              Musisz być jak prawdziwy detektyw! Znajdź ten jedyny element,
+              który się wyróżnia. Gdy go namierzysz, <strong>kliknij go!</strong>
+              Dowiesz się, który symbol musisz ustawić na samym dole naszej mapy!
+            </p>
+          </div>
+
+          <div id="crumb-hunt-area" class="crumb-hunt-area"></div>
+
+          <div id="crumb-win-section" class="crossword-secret hidden">
+            <div class="secret-reveal">
+              <img src="images/pusheen-compass-oko.png" alt="Pusheen z kompasem - Oko" class="secret-image" />
+              <h3>Znalazłaś! Brawo, detektywie! 🎉👁️</h3>
+              <p>Pusheen jest z Ciebie bardzo dumna!</p>
+              <div class="instruction-card">
+                <p>To jest <strong>Zachodnia</strong> strona pudełka!</p>
+                <p>Znajdź ściankę z symbolem <strong>Oka 👁️</strong> i ustaw ją po <span class="highlight-pink">LEWEJ</span> stronie (Zachód).</p>
+              </div>
+              <p class="final-congrats">🐱 Wszystkie zagadki rozwiązane! 🎁</p>
+            </div>
+          </div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-secondary" onclick="App.goToPage(4)">
             ← Wróć
           </button>
         </div>

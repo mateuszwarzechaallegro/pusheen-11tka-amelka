@@ -516,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
   App.init();
   PizzaGame.init();
   MemoryGame.init();
+  CrumbHunt.init();
 });
 
 // Obsługa nawigacji przeglądarki (back/forward)
@@ -794,5 +795,79 @@ const MemoryGame = {
       winSection.classList.remove('hidden');
       winSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }
+};
+
+/* ============================================
+   CRUMB HUNT GAME (Zagadka 4)
+   ============================================ */
+const CrumbHunt = {
+  area: null,
+  donutCount: 599,
+
+  init() {
+    this.area = document.getElementById('crumb-hunt-area');
+    if (!this.area) return;
+    this.buildField();
+  },
+
+  buildField() {
+    this.area.innerHTML = '';
+
+    const donutEmojis = ['🍩'];
+    const items = [];
+
+    // Generate donuts
+    for (let i = 0; i < this.donutCount; i++) {
+      items.push({ type: 'donut', emoji: donutEmojis[Math.floor(Math.random() * donutEmojis.length)] });
+    }
+
+    // Add the hidden eye
+    items.push({ type: 'eye' });
+
+    // Shuffle
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+
+    items.forEach(item => {
+      const el = document.createElement('span');
+      el.className = 'crumb-item';
+
+      if (item.type === 'eye') {
+        el.textContent = '👁️';
+        el.classList.add('crumb-eye');
+        el.title = '';
+        el.addEventListener('click', () => this.foundEye(el));
+      } else {
+        el.textContent = item.emoji;
+        el.classList.add('crumb-donut');
+        // Random color
+        const hue = Math.floor(Math.random() * 360);
+        el.style.filter = `hue-rotate(${hue}deg)`;
+      }
+
+      // Random slight rotation only
+      const rotation = (Math.random() - 0.5) * 40;
+      el.style.transform = `rotate(${rotation}deg)`;
+
+      this.area.appendChild(el);
+    });
+  },
+
+  foundEye(el) {
+    el.classList.add('crumb-found');
+
+    // Flash effect on the area
+    this.area.classList.add('crumb-found-flash');
+
+    setTimeout(() => {
+      const winSection = document.getElementById('crumb-win-section');
+      if (winSection) {
+        winSection.classList.remove('hidden');
+        winSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 600);
   }
 };
