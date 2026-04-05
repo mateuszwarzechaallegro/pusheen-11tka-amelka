@@ -1106,3 +1106,260 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* ============================================
+   FINALE / SUMMARY PAGE
+   ============================================ */
+.finale-page {
+  text-align: center;
+  position: relative;
+}
+
+.finale-confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  opacity: 0;
+  animation: confettiFall 4s ease-in forwards;
+}
+
+.confetti-emoji {
+  position: absolute;
+  top: -30px;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: confettiFall 4s ease-in forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg) scale(0.5);
+  }
+}
+
+.finale-header {
+  margin-bottom: 1.5rem;
+  animation: finaleSlideIn 0.8s ease-out;
+}
+
+.finale-header .pusheen-thinking {
+  font-size: 4rem;
+  animation: finaleWiggle 2s ease-in-out infinite;
+}
+
+.finale-header .title-glow {
+  animation: finaleGlow 2s ease-in-out infinite alternate;
+}
+
+.finale-header .birthday-badge {
+  animation: finalePopIn 0.6s ease-out 0.3s both, badgePulse 2s ease-in-out infinite 1s;
+}
+
+@keyframes finaleSlideIn {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes finaleWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+@keyframes finaleGlow {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.2) drop-shadow(0 0 8px rgba(233, 30, 99, 0.3)); }
+}
+
+@keyframes finalePopIn {
+  0% { opacity: 0; transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.finale-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+  animation: finaleCardIn 0.8s ease-out 0.2s both;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+@keyframes finaleCardIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.finale-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.compass-howto {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.compass-howto h4 {
+  font-size: 1.15rem;
+  color: var(--purple-dark);
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.compass-howto ol {
+  padding-left: 1.4rem;
+  list-style: decimal;
+}
+
+.compass-howto li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.compass-howto li:last-child {
+  margin-bottom: 0;
+}
+
+.compass-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.compass-item {
+  background: linear-gradient(135deg, #FFF9C4, #FCE4EC);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: compassPopIn 0.6s ease-out both;
+}
+
+.compass-item:nth-child(1) { animation-delay: 0.4s; }
+.compass-item:nth-child(2) { animation-delay: 0.6s; }
+.compass-item:nth-child(3) { animation-delay: 0.8s; }
+.compass-item:nth-child(4) { animation-delay: 1.0s; }
+
+@keyframes compassPopIn {
+  0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+  70% { transform: scale(1.05) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.compass-item:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.compass-direction {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  margin-bottom: 0.5rem;
+}
+
+.compass-img {
+  width: 100%;
+  max-width: 338px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.5rem;
+}
+
+.compass-symbol {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--pink-dark);
+}
+
+.finale-congrats {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--yellow-light), var(--pink-light));
+  border-radius: 16px;
+  border: 3px solid var(--yellow);
+  animation: congratsGlow 2.5s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+.finale-congrats::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes congratsGlow {
+  0% { box-shadow: 0 0 10px rgba(253, 216, 53, 0.2); }
+  100% { box-shadow: 0 0 25px rgba(253, 216, 53, 0.5), 0 0 50px rgba(233, 30, 99, 0.15); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+.finale-congrats p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  margin-bottom: 0.5rem;
+}
+
+.finale-congrats p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .compass-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .compass-img {
+    max-width: 304px;
+  }
+
+  .finale-congrats p {
+    font-size: 1rem;
+  }
+}

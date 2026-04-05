@@ -253,9 +253,6 @@
           <button class="btn btn-secondary" onclick="App.goToPage(3)">
             ← Wróć
           </button>
-          <button class="btn btn-primary" onclick="App.goToPage(5)">
-            Ostatnia zagadka! →
-          </button>
         </div>
       </div>
     </section>
@@ -297,12 +294,91 @@
                 <p>Znajdź ściankę z symbolem <strong>Oka 👁️</strong> i ustaw ją po <span class="highlight-pink">LEWEJ</span> stronie (Zachód).</p>
               </div>
               <p class="final-congrats">🐱 Wszystkie zagadki rozwiązane! 🎁</p>
+              <button class="btn btn-primary" onclick="App.goToPage('mruczando')">Zobacz podsumowanie! 🏆</button>
             </div>
           </div>
         </div>
         <div class="page-nav">
           <button class="btn btn-secondary" onclick="App.goToPage(4)">
             ← Wróć
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STRONA FINAŁOWA: PODSUMOWANIE ====== -->
+    <section class="page" data-page="mruczando">
+      <div class="finale-confetti" id="finale-confetti"></div>
+      <div class="page-content finale-page">
+        <div class="finale-header">
+          <div class="pusheen-thinking"><span>🐱🎉</span></div>
+          <h2 class="title-glow">Brawo, Amelko!</h2>
+          <div class="birthday-badge">🏆 Mistrzyni Zagadek! 🏆</div>
+        </div>
+
+        <div class="finale-card">
+          <div class="pusheen-speech">
+            <p>
+              „Miau! Jestem z Ciebie <strong>MEGA dumna</strong>! 🐾
+              Rozwiązałaś WSZYSTKIE moje zagadki — a to wcale nie było łatwe!
+              Jesteś najlepsza detektywka, z jaką miałam przyjemność
+              dzielić przygodę! Teraz masz wszystkie wskazówki, żeby
+              złożyć swój magiczny prezent!"
+            </p>
+            <p style="text-align: right; font-style: italic;">— Pusheen 🐱💜</p>
+          </div>
+
+          <h3>🧭 Twoja Mapa Kompasów</h3>
+          <p class="puzzle-description">
+            Oto wszystkie cztery symbole, które odkryłaś.
+            Użyj ich, żeby prawidłowo ustawić ścianki pudełka!
+          </p>
+
+          <div class="instruction-card compass-howto">
+            <h4>📖 Jak czytać kompas?</h4>
+            <ol>
+              <li>Na <strong>narożnikach</strong> każdego kompasu znajdują się symbole trójkąta — każdy jest <strong>unikatowy</strong>.</li>
+              <li>Ustaw <strong>górę magicznego pudełka</strong> tak, jak pokazuje kompas na obrazku.</li>
+              <li><strong>Grot oblany miodem</strong> 🍯 na środku kompasu wskaże Ci ścianę, na której trzeba ustawić odpowiedni symbol.</li>
+              <li>Symbol umieść na <strong>godzinie 12</strong> (na samej górze) każdej ścianki.</li>
+            </ol>
+          </div>
+
+          <div class="compass-grid">
+            <div class="compass-item">
+              <div class="compass-direction">⬆️ Północ</div>
+              <img src="images/pusheen-compass-sowa.png" alt="Kompas - Sowa" class="compass-img" />
+              <div class="compass-symbol">🦉 Sowa</div>
+            </div>
+            <div class="compass-item">
+              <div class="compass-direction">⬇️ Południe</div>
+              <img src="images/pusheen-compass-pizza.png" alt="Kompas - Pizza" class="compass-img" />
+              <div class="compass-symbol">🍕 Trzy Kawałki</div>
+            </div>
+            <div class="compass-item">
+              <div class="compass-direction">➡️ Wschód</div>
+              <img src="images/pusheen-compass-z.png" alt="Kompas - Zzz" class="compass-img" />
+              <div class="compass-symbol">😴 Zzz</div>
+            </div>
+            <div class="compass-item">
+              <div class="compass-direction">⬅️ Zachód</div>
+              <img src="images/pusheen-compass-oko.png" alt="Kompas - Oko" class="compass-img" />
+              <div class="compass-symbol">👁️ Oko</div>
+            </div>
+          </div>
+
+          <div class="finale-congrats">
+            <p>🎂 Wszystkiego najlepszego z okazji <strong>11. urodzin</strong>! 🎂</p>
+            <p>🐱💜 Pusheen Cię kocha! 💜🐱</p>
+          </div>
+        </div>
+
+        <div class="page-nav">
+          <button class="btn btn-secondary" onclick="App.goToPage(5)">
+            ← Wróć do zagadek
+          </button>
+          <button class="btn btn-secondary" onclick="App.goToPage(0)">
+            🏠 Początek
           </button>
         </div>
       </div>

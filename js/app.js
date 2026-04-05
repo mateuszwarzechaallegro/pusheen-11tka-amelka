@@ -22,18 +22,24 @@ const App = {
     if (target) {
       target.classList.add('active');
       this.currentPage = pageNum;
-      window.location.hash = `page-${pageNum}`;
+      window.location.hash = typeof pageNum === 'number' ? `page-${pageNum}` : pageNum;
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (pageNum === 'mruczando') {
+        this.spawnConfetti();
+      }
     }
   },
 
   /** Przywróć stronę z hasha URL */
   restoreFromHash() {
-    const hash = window.location.hash;
-    const match = hash.match(/^#page-(\d+)$/);
-    if (match) {
-      const page = parseInt(match[1], 10);
-      this.goToPage(page);
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const numMatch = hash.match(/^page-(\d+)$/);
+    if (numMatch) {
+      this.goToPage(parseInt(numMatch[1], 10));
+    } else {
+      this.goToPage(hash);
     }
   },
 
@@ -91,6 +97,66 @@ const App = {
       span.style.fontSize = `${0.8 + Math.random() * 1.2}rem`;
       container.appendChild(span);
     }
+  },
+
+  /** Confetti na stronie finałowej */
+  spawnConfetti() {
+    const container = document.getElementById('finale-confetti');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const colors = ['#E91E63', '#7B1FA2', '#FDD835', '#F8BBD0', '#B39DDB', '#FF9800', '#4CAF50', '#2196F3'];
+    const emojis = ['🎉', '🎊', '⭐', '✨', '💜', '🐾', '🎀', '🎂', '💫', '🌸'];
+    const count = 60;
+
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('span');
+      const isEmoji = Math.random() > 0.5;
+
+      if (isEmoji) {
+        piece.className = 'confetti-emoji';
+        piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      } else {
+        piece.className = 'confetti-piece';
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.width = `${6 + Math.random() * 8}px`;
+        piece.style.height = `${6 + Math.random() * 8}px`;
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      }
+
+      piece.style.left = `${Math.random() * 100}%`;
+      piece.style.animationDelay = `${Math.random() * 3}s`;
+      piece.style.animationDuration = `${2.5 + Math.random() * 3}s`;
+      container.appendChild(piece);
+    }
+
+    // Powtarzaj co 6s
+    clearInterval(this._confettiInterval);
+    this._confettiInterval = setInterval(() => {
+      if (this.currentPage !== 'mruczando') {
+        clearInterval(this._confettiInterval);
+        return;
+      }
+      container.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement('span');
+        const isEmoji = Math.random() > 0.5;
+        if (isEmoji) {
+          piece.className = 'confetti-emoji';
+          piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        } else {
+          piece.className = 'confetti-piece';
+          piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          piece.style.width = `${6 + Math.random() * 8}px`;
+          piece.style.height = `${6 + Math.random() * 8}px`;
+          piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        }
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.animationDelay = `${Math.random() * 3}s`;
+        piece.style.animationDuration = `${2.5 + Math.random() * 3}s`;
+        container.appendChild(piece);
+      }
+    }, 6000);
   },
 
   /** Pomocnik: sprawdź odpowiedź (case-insensitive, trimmed) */
