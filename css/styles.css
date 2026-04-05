@@ -873,3 +873,106 @@ body {
   color: var(--pink-dark);
   font-weight: 700;
 }
+
+/* ============================================
+   MEMORY GAME (Zagadka 3)
+   ============================================ */
+.memory-game {
+  width: 320px;
+  height: 320px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  perspective: 1000px;
+  margin: 1.5rem auto 1rem;
+}
+
+.memory-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.memory-card.memory-flip {
+  transform: rotateY(180deg);
+}
+
+.memory-card.memory-matched {
+  transform: rotateY(180deg);
+  cursor: default;
+}
+
+.memory-front-face,
+.memory-back-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.memory-front-face {
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+
+.memory-back-face {
+  background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
+  border: 2px solid var(--purple);
+}
+
+.memory-back-face::after {
+  content: "☁️";
+  font-size: 24px;
+}
+
+.memory-card.memory-matched .memory-front-face {
+  background: #E8F5E9;
+  border: 2px solid #81C784;
+}
+
+#memory-score-board {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  margin-bottom: 0.5rem;
+}
+
+.memory-big-z {
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  margin: 1rem 0;
+  animation: memoryPulse 2s ease-in-out infinite;
+}
+
+@keyframes memoryPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+@media (max-width: 600px) {
+  .memory-game {
+    width: 280px;
+    height: 280px;
+    gap: 6px;
+  }
+
+  .memory-front-face,
+  .memory-back-face {
+    font-size: 24px;
+  }
+
+  .memory-back-face::after {
+    font-size: 18px;
+  }
+}

@@ -515,6 +515,7 @@ const Crossword = {
 document.addEventListener('DOMContentLoaded', () => {
   App.init();
   PizzaGame.init();
+  MemoryGame.init();
 });
 
 // Obsługa nawigacji przeglądarki (back/forward)
@@ -665,6 +666,130 @@ const PizzaGame = {
 
     // Pokaż sekcję wygranej
     const winSection = document.getElementById('pizza-win-section');
+    if (winSection) {
+      winSection.classList.remove('hidden');
+      winSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+};
+
+/* ============================================
+   MEMORY GAME (Zagadka 3)
+   ============================================ */
+const MemoryGame = {
+  icons: ['🍦', '🍩', '🧶', '🛌', '🧁', '🥐', '☁️', '🌙'],
+  cards: [],
+  hasFlippedCard: false,
+  lockBoard: false,
+  firstCard: null,
+  secondCard: null,
+  matchedPairs: 0,
+  gridEl: null,
+  scoreDisplay: null,
+  progressEl: null,
+
+  init() {
+    this.gridEl = document.getElementById('memory-game-grid');
+    this.scoreDisplay = document.getElementById('memory-score');
+    this.progressEl = document.getElementById('memory-progress');
+    if (!this.gridEl) return;
+
+    this.createBoard();
+  },
+
+  shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  },
+
+  createBoard() {
+    this.gridEl.innerHTML = '';
+    this.matchedPairs = 0;
+    this.hasFlippedCard = false;
+    this.lockBoard = false;
+    this.firstCard = null;
+    this.secondCard = null;
+
+    if (this.scoreDisplay) this.scoreDisplay.textContent = '0';
+    if (this.progressEl) this.progressEl.style.width = '0%';
+
+    this.cards = this.shuffle([...this.icons, ...this.icons]);
+
+    this.cards.forEach(icon => {
+      const card = document.createElement('div');
+      card.classList.add('memory-card');
+      card.dataset.icon = icon;
+
+      card.innerHTML = `
+        <div class="memory-front-face">${icon}</div>
+        <div class="memory-back-face"></div>
+      `;
+
+      card.addEventListener('click', () => this.flipCard(card));
+      this.gridEl.appendChild(card);
+    });
+  },
+
+  flipCard(card) {
+    if (this.lockBoard) return;
+    if (card === this.firstCard) return;
+    if (card.classList.contains('memory-flip')) return;
+
+    card.classList.add('memory-flip');
+
+    if (!this.hasFlippedCard) {
+      this.hasFlippedCard = true;
+      this.firstCard = card;
+      return;
+    }
+
+    this.secondCard = card;
+    this.checkForMatch();
+  },
+
+  checkForMatch() {
+    const isMatch = this.firstCard.dataset.icon === this.secondCard.dataset.icon;
+    isMatch ? this.disableCards() : this.unflipCards();
+  },
+
+  disableCards() {
+    this.firstCard.classList.add('memory-matched');
+    this.secondCard.classList.add('memory-matched');
+
+    this.matchedPairs++;
+    if (this.scoreDisplay) this.scoreDisplay.textContent = this.matchedPairs;
+
+    const pct = (this.matchedPairs / this.icons.length) * 100;
+    if (this.progressEl) this.progressEl.style.width = `${pct}%`;
+
+    if (this.matchedPairs === this.icons.length) {
+      setTimeout(() => this.endGame(), 800);
+    }
+
+    this.resetBoard();
+  },
+
+  unflipCards() {
+    this.lockBoard = true;
+    setTimeout(() => {
+      this.firstCard.classList.remove('memory-flip');
+      this.secondCard.classList.remove('memory-flip');
+      this.resetBoard();
+    }, 900);
+  },
+
+  resetBoard() {
+    this.hasFlippedCard = false;
+    this.lockBoard = false;
+    this.firstCard = null;
+    this.secondCard = null;
+  },
+
+  endGame() {
+    const winSection = document.getElementById('memory-win-section');
     if (winSection) {
       winSection.classList.remove('hidden');
       winSection.scrollIntoView({ behavior: 'smooth', block: 'center' });

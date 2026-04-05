@@ -146,7 +146,7 @@
               <img src="images/pusheen-compass-sowa.png" alt="Pusheen z kompasem" class="secret-image" />
               <h3>Pierwszy symbol odkryty!</h3>
               <div class="secret-word" id="secret-word-display"></div>
-              <p class="secret-hint">Pilnuje północznej bramy</p>
+              <p class="secret-hint">Pilnuje północnej bramy</p>
               <button class="btn btn-primary" onclick="App.goToPage(3)">Dalej →</button>
             </div>
           </div>
@@ -206,6 +206,50 @@
         </div>
         <div class="page-nav">
           <button class="btn btn-secondary" onclick="App.goToPage(2)">
+            ← Wróć
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STRONA 4: GRA — MEMORY (ZAGADKA 3) ====== -->
+    <section class="page" data-page="4">
+      <div class="page-content puzzle-page memory-page">
+        <div class="puzzle-header">
+          <span class="puzzle-number">Zagadka 3 — Kraina Snów! 😴</span>
+          <div class="progress-bar">
+            <div class="progress-fill" id="memory-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="puzzle-card">
+          <div class="pusheen-thinking">
+            <span>🐱😴</span>
+          </div>
+          <h3>Kraina Snów Pusheena</h3>
+          <p class="puzzle-description">
+            Pusheen zaraz uśnie! Dopasuj <strong>wszystkie pary</strong> jej ulubionych snów,
+            aby utulić ją do drzemki. 🍦🧶🌙
+          </p>
+
+          <div class="memory-game" id="memory-game-grid"></div>
+
+          <div id="memory-score-board">Dopasowane: <span id="memory-score">0</span> / 8</div>
+
+          <div id="memory-win-section" class="crossword-secret hidden">
+            <div class="secret-reveal">
+              <img src="images/pusheen-compass-z.png" alt="Pusheen z kompasem - Zzz" class="secret-image" />
+              <p>Dobranoc, Pusheen... 😴</p>
+              <div class="memory-big-z">Zzz...</div>
+              <div class="instruction-card">
+                <p>To jest <strong>Prawa</strong> strona pudełka!</p>
+                <p>Znajdź ściankę Wschodnią i ustaw śpiącą literką <strong>"Z"</strong>.</p>
+                <p><span class="highlight-pink">To Twój Wschód!</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-secondary" onclick="App.goToPage(3)">
             ← Wróć
           </button>
         </div>
