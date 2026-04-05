@@ -143,16 +143,69 @@
           </div>
           <div id="crossword-secret" class="crossword-secret hidden">
             <div class="secret-reveal">
-              <img src="images/pusheen-compass.png" alt="Pusheen z kompasem" class="secret-image" />
+              <img src="images/pusheen-compass-sowa.png" alt="Pusheen z kompasem" class="secret-image" />
               <h3>Pierwszy symbol odkryty!</h3>
               <div class="secret-word" id="secret-word-display"></div>
-              <p class="secret-hint">Pilnuje zachodniej bramy</p>
+              <p class="secret-hint">Pilnuje północznej bramy</p>
               <button class="btn btn-primary" onclick="App.goToPage(3)">Dalej →</button>
             </div>
           </div>
         </div>
         <div class="page-nav">
           <button class="btn btn-secondary" onclick="App.goToPage(1)">
+            ← Wróć
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STRONA 3: GRA — PIZZA (ZAGADKA 2) ====== -->
+    <section class="page" data-page="3">
+      <div class="page-content puzzle-page pizza-page">
+        <div class="puzzle-header">
+          <span class="puzzle-number">Zagadka 2 — Uczta u Stormy! 🍕</span>
+          <div class="progress-bar">
+            <div class="progress-fill" id="pizza-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="puzzle-card">
+          <div class="pusheen-thinking">
+            <span>🐱🍕</span>
+          </div>
+          <h3>Uczta u Stormy!</h3>
+          <p class="puzzle-description">
+            Pusheen jest bardzo głodna! Pomóż jej złapać <strong>10 smakołyków</strong>,
+            które pojawiają się na talerzu! 🧁🍩🍕🍰🍪
+          </p>
+          <p class="puzzle-warning">⚠️ Uważaj na pustą miskę <strong>🥣</strong> — kliknięcie w nią odejmuje punkt!</p>
+
+          <div id="pizza-game-area">
+            <div id="pizza-start-overlay" class="pizza-start-overlay">
+              <button class="btn btn-primary btn-bounce" id="pizza-start-btn">START! 🐾</button>
+            </div>
+          </div>
+
+          <div id="pizza-score-board">Złapano: <span id="pizza-score">0</span> / 10</div>
+
+          <div id="pizza-win-section" class="crossword-secret hidden">
+            <div class="secret-reveal">
+              <img src="images/pusheen-compass-pizza.png" alt="Pusheen z kompasem i pizzą" class="secret-image" />
+              <h3>Mniam! Pychota! ❤️</h3>
+              <p>Pusheen jest najedzona i bardzo szczęśliwa! W nagrodę zdradza Ci tajemnicę Południa.</p>
+              <div class="pizza-final-symbol">
+                <div class="pizza-triangle-top">🍕</div>
+                <div class="pizza-triangle-bottom">🍕🍕</div>
+              </div>
+              <div class="instruction-card">
+                <p>Ten symbol oznacza <strong>„Trzy Smakowite Kawałki"</strong>.</p>
+                <p>Ustaw ściankę z tym symbolem u <span class="highlight-pink">DOŁU</span> (Południe).</p>
+              </div>
+              <button class="btn btn-primary" onclick="App.goToPage(4)">Dalej →</button>
+            </div>
+          </div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-secondary" onclick="App.goToPage(2)">
             ← Wróć
           </button>
         </div>

@@ -512,7 +512,162 @@ const Crossword = {
 };
 
 // Start
-document.addEventListener('DOMContentLoaded', () => App.init());
+document.addEventListener('DOMContentLoaded', () => {
+  App.init();
+  PizzaGame.init();
+});
 
 // Obsługa nawigacji przeglądarki (back/forward)
 window.addEventListener('hashchange', () => App.restoreFromHash());
+
+/* ============================================
+   PIZZA GAME (Zagadka 2)
+   ============================================ */
+const PizzaGame = {
+  score: 0,
+  target: 10,
+  gameActive: false,
+  pizzaTimeout: null,
+  gameArea: null,
+  scoreDisplay: null,
+  progressEl: null,
+  goodEmojis: ['🧁', '🍩', '🍕', '🍰', '🍪', '🍫', '🍬', '🍭', '🎂', '🍔'],
+  badEmoji: '🥣',
+
+  init() {
+    this.gameArea = document.getElementById('pizza-game-area');
+    this.scoreDisplay = document.getElementById('pizza-score');
+    this.progressEl = document.getElementById('pizza-progress');
+    if (!this.gameArea) return;
+
+    // Podepnij przycisk START od razu
+    const btn = document.getElementById('pizza-start-btn');
+    if (btn) {
+      btn.addEventListener('click', () => this.startGame());
+    }
+
+    // Pauzuj grę gdy użytkownik opuści stronę 3
+    const page3 = document.querySelector('[data-page="3"]');
+    if (page3) {
+      const observer = new MutationObserver(() => {
+        if (!page3.classList.contains('active') && this.gameActive) {
+          this.pauseGame();
+        }
+      });
+      observer.observe(page3, { attributes: true, attributeFilter: ['class'] });
+    }
+  },
+
+  startGame() {
+    const overlay = document.getElementById('pizza-start-overlay');
+    if (overlay) overlay.style.display = 'none';
+    this.gameActive = true;
+    this.spawnPizza();
+  },
+
+  pauseGame() {
+    this.gameActive = false;
+    clearTimeout(this.pizzaTimeout);
+  },
+
+  getRandomPosition() {
+    const areaWidth = this.gameArea.clientWidth;
+    const areaHeight = this.gameArea.clientHeight;
+    const x = Math.random() * (areaWidth - 50);
+    const y = Math.random() * (areaHeight - 50);
+    return { x, y };
+  },
+
+  spawnPizza() {
+    if (!this.gameActive) return;
+
+    // Usuń stary element
+    const old = this.gameArea.querySelector('.pizza-item');
+    if (old) old.remove();
+
+    // 20% szans na pustą miskę (negatywny punkt)
+    const isBad = Math.random() < 0.2;
+
+    const item = document.createElement('div');
+    item.className = 'pizza-item';
+    if (isBad) {
+      item.textContent = this.badEmoji;
+      item.classList.add('bad-item');
+    } else {
+      item.textContent = this.goodEmojis[Math.floor(Math.random() * this.goodEmojis.length)];
+    }
+
+    const pos = this.getRandomPosition();
+    item.style.left = pos.x + 'px';
+    item.style.top = pos.y + 'px';
+
+    const catchHandler = (e) => {
+      if (e.type === 'touchstart') e.preventDefault();
+      if (isBad) {
+        this.catchBad(item);
+      } else {
+        this.catchGood(item);
+      }
+    };
+
+    item.addEventListener('click', catchHandler);
+    item.addEventListener('touchstart', catchHandler);
+
+    this.gameArea.appendChild(item);
+
+    clearTimeout(this.pizzaTimeout);
+    this.pizzaTimeout = setTimeout(() => this.spawnPizza(), 1200);
+  },
+
+  catchGood(el) {
+    if (!this.gameActive) return;
+
+    this.score++;
+    this.scoreDisplay.textContent = this.score;
+
+    // Aktualizuj progress bar
+    const pct = (this.score / this.target) * 100;
+    if (this.progressEl) this.progressEl.style.width = `${pct}%`;
+
+    el.remove();
+    clearTimeout(this.pizzaTimeout);
+
+    if (this.score >= this.target) {
+      this.endGame();
+    } else {
+      setTimeout(() => this.spawnPizza(), 100);
+    }
+  },
+
+  catchBad(el) {
+    if (!this.gameActive) return;
+
+    this.score = Math.max(0, this.score - 1);
+    this.scoreDisplay.textContent = this.score;
+
+    const pct = (this.score / this.target) * 100;
+    if (this.progressEl) this.progressEl.style.width = `${pct}%`;
+
+    // Efekt wizualny — krótkie czerwone mignięcie
+    el.classList.add('bad-hit');
+    setTimeout(() => el.remove(), 300);
+
+    clearTimeout(this.pizzaTimeout);
+    setTimeout(() => this.spawnPizza(), 400);
+  },
+
+  endGame() {
+    this.gameActive = false;
+    clearTimeout(this.pizzaTimeout);
+
+    const remaining = this.gameArea.querySelectorAll('.pizza-item');
+    remaining.forEach(el => el.remove());
+
+    // Pokaż sekcję wygranej
+    const winSection = document.getElementById('pizza-win-section');
+    if (winSection) {
+      winSection.classList.remove('hidden');
+      winSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+};
